@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>FAST FOODS</title>
+    <title>DADA BURGER</title>
     <style>
         body {
             margin: 0;
@@ -43,13 +43,14 @@
         }
 
         .menu-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 1.5rem;
             padding: 2rem;
-            max-width: 1200px;
+            max-width: 500px;
             margin: auto;
         }
+
 
         .menu-card {
             background: #fff;
@@ -200,7 +201,6 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            display: none;
         }
 
         .product-info {
@@ -209,309 +209,199 @@
             font-size: 0.9rem;
         }
     </style>
+
 </head>
 <body>
+
 <header>DADA BURGER<br>FAST FOODS</header>
+
+<!-- Categories -->
 <div class="categories">
     <div class="category" data-filter="all">Все</div>
-    <div class="category" data-filter="шаурма">шаурмы</div>
-    <div class="category" data-filter="лаваш">лавашы</div>
-    <div class="category" data-filter="пицца">пиццы</div>
-    <div class="category" data-filter="бургер">бургеры</div>
-    <div class="category" data-filter="хот дог">хот дог</div>
+    <div class="category" data-filter="шаурма">Шаурмы</div>
+    <div class="category" data-filter="лаваш">Лавашы</div>
+    <div class="category" data-filter="пицца">Пиццы</div>
+    <div class="category" data-filter="бургер">Бургеры</div>
+    <div class="category" data-filter="хотдог">Хот-доги</div>
 </div>
+
+<!-- Menu Cards Container -->
 <div class="menu-container">
-     <div class="menu-card" data-category="шаурма">
-        <img style="width: 307px; height: 290px" src="img/shaurma.jpg" alt="Сахарное печенье">
-        <h3>шаурма</h3>
+
+    <!-- All product cards go here -->
+    <div class="menu-card" data-category="шаурма">
+        <img style="width: 307px; height:280px" src="img/shaurma.jpg" alt="шаурма">
+        <h3>Шаурма</h3>
         <div class="price">1205 ₸</div>
         <button class="order-btn">Заказать</button>
-    <div class="quantity-selector">
-        <div class="quantity">
-            <button class="decrease-btn">-</button>
-            <input type="number" value="1" min="1" class="quantity-input">
-            <button class="increase-btn">+</button>
-        </div>
-        <button class="add-to-cart">Добавить в корзину</button>
-        <div class="product-info">
-            <span class="product-name"></span>
-            <span class="product-price"></span>
-            <span class="product-quantity"></span>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">-</button>
+                <input type="number" value="1" min="1" class="quantity-input">
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
         </div>
     </div>
-         <div class="menu-card" data-category="хот дог">
-        <img style="width: 307px; height: 290px" src="img/hotdog.jpg" alt="Сахарное печенье">
-        <h3>хот дог</h3>
-        <div class="price">890 ₸</div>
+
+    <div class="menu-card" data-category="хотдог">
+        <img style="width: 307px; height:280px" src="img/hotdog.jpg" alt="Хотдог">
+        <h3>Хотдог</h3>
+        <div class="price">990 ₸</div>
         <button class="order-btn">Заказать</button>
-    <div class="quantity-selector">
-        <div class="quantity">
-            <button class="decrease-btn">-</button>
-            <input type="number" value="1" min="1" class="quantity-input">
-            <button class="increase-btn">+</button>
-        </div>
-        <button class="add-to-cart">Добавить в корзину</button>
-        <div class="product-info">
-            <span class="product-name"></span>
-            <span class="product-price"></span>
-            <span class="product-quantity"></span>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">-</button>
+                <input type="number" value="1" min="1" class="quantity-input">
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
         </div>
     </div>
-              <div class="menu-card" data-category="фри">
-        <img style="width: 307px; height: 290px" src="img/fri.jpg" alt="фри">
+
+    <div class="menu-card" data-category="фри">
+        <img style="width: 307px; height:280px" src="img/fri.jpg" alt="фри">
         <h3>фри</h3>
         <div class="price">550 ₸</div>
         <button class="order-btn">Заказать</button>
-    <div class="quantity-selector">
-        <div class="quantity">
-            <button class="decrease-btn">-</button>
-            <input type="number" value="1" min="1" class="quantity-input">
-            <button class="increase-btn">+</button>
-        </div>
-        <button class="add-to-cart">Добавить в корзину</button>
-        <div class="product-info">
-            <span class="product-name"></span>
-            <span class="product-price"></span>
-            <span class="product-quantity"></span>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">-</button>
+                <input type="number" value="1" min="1" class="quantity-input">
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
         </div>
     </div>
-</div>
-<div class="menu-card" data-category="лаваш с сыром">
-    <img style="width: 307px; height: 290px" src="img/doner.jpeg"
-         alt="лаваш с сыром">
-    <h3>лаваш с сыром</h3>
-    <div class="price">1100 ₸</div>
-    <button class="order-btn">Заказать</button>
 
-    <div class="quantity-selector">
-        <div class="quantity">
-            <button class="decrease-btn">-</button>
-            <input type="number" value="1" min="1" class="quantity-input">
-            <button class="increase-btn">+</button>
-        </div>
-        <button class="add-to-cart">Добавить в корзину</button>
-        <div class="product-info">
-            <span class="product-name"></span>
-            <span class="product-price"></span>
-            <span class="product-quantity"></span>
-        </div>
-    </div>
-</div>
-<div class="menu-card" data-category="пицца с грибом">
-    <img style="width: 307px; height: 290px" src="img/izza.jpg" alt="пицца с грибом">
-    <h3>пицца с грибом</h3>
-    <div class="price">1990 ₸</div>
-    <button class="order-btn">Заказать</button>
-    <div class="quantity-selector">
-        <div class="quantity">
-            <button class="decrease-btn">-</button>
-            <input type="number" value="1" min="1" class="quantity-input">
-            <button class="increase-btn">+</button>
-        </div>
-        <button class="add-to-cart">Добавить в корзину</button>
-        <div class="product-info">
-            <span class="product-name"></span>
-            <span class="product-price"></span>
-            <span class="product-quantity"></span>
+    <div class="menu-card" data-category="лаваш">
+        <img style="width: 307px; height:280px" src="img/doner.jpeg" alt="лаваш с сыром">
+        <h3>лаваш с сыром</h3>
+        <div class="price">1100 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">-</button>
+                <input type="number" value="1" min="1" class="quantity-input">
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
         </div>
     </div>
-</div>
-<div class="menu-card" data-category="бургер с сыром">
-    <img style="width: 307px; height: 290px" src="img/burger.jpg" alt="бургер с сыром">
-    <h3>бургер с сыром</h3>
-    <div class="price">1050 ₸</div>
-    <button class="order-btn">Заказать</button>
-    <div class="quantity-selector">
-        <div class="quantity">
-            <button class="decrease-btn">-</button>
-            <input type="number" value="1" min="1" class="quantity-input">
-            <button class="increase-btn">+</button>
-        </div>
-        <button class="add-to-cart">Добавить в корзину</button>
-        <div class="product-info">
-            <span class="product-name"></span>
-            <span class="product-price"></span>
-            <span class="product-quantity"></span>
+
+    <div class="menu-card" data-category="пицца">
+        <img style="width: 307px; height:280px" src="img/izza.jpg" alt="пицца с грибом">
+        <h3>пицца с грибом</h3>
+        <div class="price">1990 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">-</button>
+                <input type="number" value="1" min="1" class="quantity-input">
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
         </div>
     </div>
+
+    <div class="menu-card" data-category="бургер">
+        <img style="width: 307px; height:280px" src="img/burger.jpg" alt="бургер с сыром">
+        <h3>бургер с сыром</h3>
+        <div class="price">1050 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">-</button>
+                <input type="number" value="1" min="1" class="quantity-input">
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
+        </div>
+    </div>
+
 </div>
-</div>
+
+<!-- Cart Icon -->
 <div class="cart-icon" onclick="window.location.href='cart.html'">🛒</div>
-<div <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Корзина</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            padding: 2rem;
-        }
-        .cart-item {
-            margin-bottom: 1rem;
-            padding: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
-        .total {
-            font-weight: bold;
-            margin-top: 2rem;
-        }
-    </style>
-</head>
-<body>
-    <h1>Корзина</h1>
-    <div id="cart-items"></div>
-    <div class="total" id="total-sum"></div>
 
-    <script>
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const cartContainer = document.getElementById('cart-items');
-        const totalContainer = document.getElementById('total-sum');
-
-        let total = 0;
-
-        cart.forEach(item => {
-            const itemEl = document.createElement('div');
-            itemEl.className = 'cart-item';
-            const price = parseFloat(item.price.replace(/[^\d.]/g, ''));
-            const subtotal = price * item.quantity;
-            total += subtotal;
-
-            itemEl.innerHTML = `
-                <div><strong>${item.name}</strong></div>
-                <div>Цена: ${item.price}</div>
-                <div>Количество: ${item.quantity}</div>
-                <div>Сумма: ${subtotal.toFixed(2)} ₸</div>
-            `;
-            cartContainer.appendChild(itemEl);
-        });
-
-        totalContainer.textContent = `Общая сумма: ${total.toFixed(2)} ₸`;
-    </script>
-</body>
-</html>
-</div>
+<!-- Footer -->
 <footer>Телефон: +7 (706) 626 75 37</footer>
+
+<!-- Scripts -->
 <script>
-    const categories = document.querySelectorAll('.category');
-    const cards = document.querySelectorAll('.menu-card');
-    const modal = document.getElementById('orderModal');
-    const orderButtons = document.querySelectorAll('.order-btn');
-    let selectedProduct = '';
-
-    categories.forEach(category => {
-        category.addEventListener('click', () => {
-            const filter = category.getAttribute('data-filter');
-            cards.forEach(card => {
-                card.style.display = filter === 'all' || card.getAttribute('data-category') === filter
-                    ? 'block' : 'none';
-            });
-        });
-    });
-
-    orderButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            const card = e.target.closest('.menu-card');
-            selectedProduct = card.querySelector('h3').innerText;
-            modal.style.display = 'flex';
-        });
-    });
-
-    function closeModal() {
-        modal.style.display = 'none';
-    }
-
     document.addEventListener('DOMContentLoaded', function () {
-        const orderButtons = document.querySelectorAll('.order-btn');
-        const addToCartButtons = document.querySelectorAll('.add-to-cart');
-        const decreaseButtons = document.querySelectorAll('.decrease-btn');
-        const increaseButtons = document.querySelectorAll('.increase-btn');
-        const quantityInputs = document.querySelectorAll('.quantity-input');
-        const categories = document.querySelectorAll('.category');
+      const categories = document.querySelectorAll('.category');
+      const cards = document.querySelectorAll('.menu-card');
 
-        categories.forEach(category => {
-            category.addEventListener('click', () => {
-                const filter = category.getAttribute('data-filter');
-                cards.forEach(card => {
-                    card.style.display = filter === 'all' || card.getAttribute('data-category') === filter
-                        ? 'block' : 'none';
-                });
-            });
+      // Filtering
+      categories.forEach(category => {
+        category.addEventListener('click', () => {
+          const filter = category.getAttribute('data-filter');
+          cards.forEach(card => {
+            card.style.display = filter === 'all' || card.getAttribute('data-category') === filter
+              ? 'block' : 'none';
+          });
         });
+      });
 
-        if (!localStorage.getItem('cart')) {
-            localStorage.setItem('cart', JSON.stringify([]));
-        }
-
-        orderButtons.forEach((button, index) => {
-            button.addEventListener('click', function () {
-                document.querySelectorAll('.quantity-selector').forEach(selector => {
-                    selector.style.display = 'none';
-                });
-                document.querySelectorAll('.add-to-cart').forEach(btn => {
-                    btn.style.display = 'none';
-                });
-
-                const quantitySelector = this.parentNode.querySelector('.quantity-selector');
-                quantitySelector.style.display = 'block';
-
-                const addToCartBtn = this.parentNode.querySelector('.add-to-cart');
-                addToCartBtn.style.display = 'inline-block';
-
-                const productName = this.parentNode.querySelector('h3').textContent;
-                const productPrice = this.parentNode.querySelector('.price').textContent;
-                this.parentNode.querySelector('.product-name').textContent = productName;
-                this.parentNode.querySelector('.product-price').textContent = productPrice;
-            });
+      // Quantity adjustment
+      document.querySelectorAll('.increase-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+          const input = this.previousElementSibling;
+          input.value = parseInt(input.value) + 1;
         });
+      });
 
-        decreaseButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const input = this.nextElementSibling;
-                if (parseInt(input.value) > 1) {
-                    input.value = parseInt(input.value) - 1;
-                }
-            });
+      document.querySelectorAll('.decrease-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+          const input = this.nextElementSibling;
+          if (parseInt(input.value) > 1) {
+            input.value = parseInt(input.value) - 1;
+          }
         });
+      });
 
-        increaseButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const input = this.previousElementSibling;
-                input.value = parseInt(input.value) + 1;
-            });
+      // Order button click
+      document.querySelectorAll('.order-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+          const card = btn.closest('.menu-card');
+          const selector = card.querySelector('.quantity-selector');
+          selector.style.display = 'block';
         });
+      });
 
-        addToCartButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const card = this.closest('.menu-card');
-                const productName = card.querySelector('h3').textContent;
-                const productPrice = card.querySelector('.price').textContent;
-                const quantity = card.querySelector('.quantity-input').value;
+      // Add to cart
+      document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', function () {
+          const card = btn.closest('.menu-card');
+          const name = card.querySelector('h3').textContent;
+          const price = card.querySelector('.price').textContent;
+          const quantity = parseInt(card.querySelector('.quantity-input').value);
+          let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-                let cart = JSON.parse(localStorage.getItem('cart'));
+          const existing = cart.find(item => item.name === name);
+          if (existing) {
+            existing.quantity += quantity;
+          } else {
+            cart.push({ name, price, quantity });
+          }
 
-                const existingProductIndex = cart.findIndex(item => item.name === productName);
-
-                if (existingProductIndex !== -1) {
-                    cart[existingProductIndex].quantity = parseInt(cart[existingProductIndex].quantity) + parseInt(quantity);
-                } else {
-                    cart.push({
-                        name: productName,
-                        price: productPrice,
-                        quantity: quantity
-                    });
-                }
-
-                localStorage.setItem('cart', JSON.stringify(cart));
-
-                alert(`${productName} (${quantity} шт.) добавлено в корзину!`);
-
-                card.querySelector('.quantity-selector').style.display = 'none';
-                this.style.display = 'none';
-            });
+          localStorage.setItem('cart', JSON.stringify(cart));
+          alert(`${name} (${quantity} шт.) добавлено в корзину!`);
+          card.querySelector('.quantity-selector').style.display = 'none';
         });
+      });
     });
 </script>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
