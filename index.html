@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Печеньки для Удовольствия</title>
+    <title>FAST FOODS</title>
     <style>
         body {
             margin: 0;
@@ -31,7 +30,7 @@
         }
 
         .category {
-            background: #fff5b1;
+            background: #00ffdd;
             padding: 0.6rem 1.2rem;
             border-radius: 25px;
             cursor: pointer;
@@ -212,105 +211,188 @@
     </style>
 </head>
 <body>
-
-<header>Pioner<br>Печеньки для удовольствия</header>
-
+<header>DADA BURGER<br>FAST FOODS</header>
 <div class="categories">
     <div class="category" data-filter="all">Все</div>
-    <div class="category" data-filter="сахарное">Cахарное</div>
-    <div class="category" data-filter="затяжное">Затяжное</div>
-    <div class="category" data-filter="сдобное">Сдобное</div>
-    <div class="category" data-filter="сухое">Сухое</div>
+    <div class="category" data-filter="шаурма">шаурмы</div>
+    <div class="category" data-filter="лаваш">лавашы</div>
+    <div class="category" data-filter="пицца">пиццы</div>
+    <div class="category" data-filter="бургер">бургеры</div>
+    <div class="category" data-filter="хот дог">хот дог</div>
 </div>
-
 <div class="menu-container">
-    <div class="menu-card" data-category="сахарное">
-        <img style="width: 307px; height: 290px" src="kali-red-sticker.png" alt="Сахарное печенье">
-        <h3>Cахарное Печенье</h3>
+     <div class="menu-card" data-category="шаурма">
+        <img style="width: 307px; height: 290px" src="img/shaurma.jpg" alt="Сахарное печенье">
+        <h3>шаурма</h3>
         <div class="price">1205 ₸</div>
         <button class="order-btn">Заказать</button>
-
-        <div class="quantity-selector">
-            <div class="quantity">
-                <button class="decrease-btn">-</button>
-                <input type="number" value="1" min="1" class="quantity-input">
-                <button class="increase-btn">+</button>
-            </div>
-            <button class="add-to-cart">Добавить в корзину</button>
-            <div class="product-info">
-                <span class="product-name"></span>
-                <span class="product-price"></span>
-                <span class="product-quantity"></span>
-            </div>
+    <div class="quantity-selector">
+        <div class="quantity">
+            <button class="decrease-btn">-</button>
+            <input type="number" value="1" min="1" class="quantity-input">
+            <button class="increase-btn">+</button>
+        </div>
+        <button class="add-to-cart">Добавить в корзину</button>
+        <div class="product-info">
+            <span class="product-name"></span>
+            <span class="product-price"></span>
+            <span class="product-quantity"></span>
         </div>
     </div>
-    <div class="menu-card" data-category="затяжное">
-        <img style="width: 307px; height: 290px" src="img/protracted_biscuit.png"
-             alt="Затяжное печенье">
-        <h3>Затяжное Печенье</h3>
-        <div class="price">1100 ₸</div>
+         <div class="menu-card" data-category="хот дог">
+        <img style="width: 307px; height: 290px" src="img/hotdog.jpg" alt="Сахарное печенье">
+        <h3>хот дог</h3>
+        <div class="price">890 ₸</div>
         <button class="order-btn">Заказать</button>
-
-        <div class="quantity-selector">
-            <div class="quantity">
-                <button class="decrease-btn">-</button>
-                <input type="number" value="1" min="1" class="quantity-input">
-                <button class="increase-btn">+</button>
-            </div>
-            <button class="add-to-cart">Добавить в корзину</button>
-            <div class="product-info">
-                <span class="product-name"></span>
-                <span class="product-price"></span>
-                <span class="product-quantity"></span>
-            </div>
+    <div class="quantity-selector">
+        <div class="quantity">
+            <button class="decrease-btn">-</button>
+            <input type="number" value="1" min="1" class="quantity-input">
+            <button class="increase-btn">+</button>
+        </div>
+        <button class="add-to-cart">Добавить в корзину</button>
+        <div class="product-info">
+            <span class="product-name"></span>
+            <span class="product-price"></span>
+            <span class="product-quantity"></span>
         </div>
     </div>
-    <div class="menu-card" data-category="сдобное">
-        <img style="width: 307px; height: 290px" src="img/butter_biscuit.png" alt="Сдобное печенье">
-        <h3>Сдобное Печенье</h3>
-        <div class="price">1500 ₸</div>
+              <div class="menu-card" data-category="фри">
+        <img style="width: 307px; height: 290px" src="img/fri.jpg" alt="фри">
+        <h3>фри</h3>
+        <div class="price">550 ₸</div>
         <button class="order-btn">Заказать</button>
-
-        <div class="quantity-selector">
-            <div class="quantity">
-                <button class="decrease-btn">-</button>
-                <input type="number" value="1" min="1" class="quantity-input">
-                <button class="increase-btn">+</button>
-            </div>
-            <button class="add-to-cart">Добавить в корзину</button>
-            <div class="product-info">
-                <span class="product-name"></span>
-                <span class="product-price"></span>
-                <span class="product-quantity"></span>
-            </div>
+    <div class="quantity-selector">
+        <div class="quantity">
+            <button class="decrease-btn">-</button>
+            <input type="number" value="1" min="1" class="quantity-input">
+            <button class="increase-btn">+</button>
         </div>
-    </div>
-    <div class="menu-card" data-category="сухое">
-        <img style="width: 307px; height: 290px" src="img/dry_biscuit.png" alt="Сухое печенье">
-        <h3>Сухое Печенье</h3>
-        <div class="price">485 ₸</div>
-        <button class="order-btn">Заказать</button>
-
-        <div class="quantity-selector">
-            <div class="quantity">
-                <button class="decrease-btn">-</button>
-                <input type="number" value="1" min="1" class="quantity-input">
-                <button class="increase-btn">+</button>
-            </div>
-            <button class="add-to-cart">Добавить в корзину</button>
-            <div class="product-info">
-                <span class="product-name"></span>
-                <span class="product-price"></span>
-                <span class="product-quantity"></span>
-            </div>
+        <button class="add-to-cart">Добавить в корзину</button>
+        <div class="product-info">
+            <span class="product-name"></span>
+            <span class="product-price"></span>
+            <span class="product-quantity"></span>
         </div>
     </div>
 </div>
+<div class="menu-card" data-category="лаваш с сыром">
+    <img style="width: 307px; height: 290px" src="img/doner.jpeg"
+         alt="лаваш с сыром">
+    <h3>лаваш с сыром</h3>
+    <div class="price">1100 ₸</div>
+    <button class="order-btn">Заказать</button>
 
+    <div class="quantity-selector">
+        <div class="quantity">
+            <button class="decrease-btn">-</button>
+            <input type="number" value="1" min="1" class="quantity-input">
+            <button class="increase-btn">+</button>
+        </div>
+        <button class="add-to-cart">Добавить в корзину</button>
+        <div class="product-info">
+            <span class="product-name"></span>
+            <span class="product-price"></span>
+            <span class="product-quantity"></span>
+        </div>
+    </div>
+</div>
+<div class="menu-card" data-category="пицца с грибом">
+    <img style="width: 307px; height: 290px" src="img/izza.jpg" alt="пицца с грибом">
+    <h3>пицца с грибом</h3>
+    <div class="price">1990 ₸</div>
+    <button class="order-btn">Заказать</button>
+    <div class="quantity-selector">
+        <div class="quantity">
+            <button class="decrease-btn">-</button>
+            <input type="number" value="1" min="1" class="quantity-input">
+            <button class="increase-btn">+</button>
+        </div>
+        <button class="add-to-cart">Добавить в корзину</button>
+        <div class="product-info">
+            <span class="product-name"></span>
+            <span class="product-price"></span>
+            <span class="product-quantity"></span>
+        </div>
+    </div>
+</div>
+<div class="menu-card" data-category="бургер с сыром">
+    <img style="width: 307px; height: 290px" src="img/burger.jpg" alt="бургер с сыром">
+    <h3>бургер с сыром</h3>
+    <div class="price">1050 ₸</div>
+    <button class="order-btn">Заказать</button>
+    <div class="quantity-selector">
+        <div class="quantity">
+            <button class="decrease-btn">-</button>
+            <input type="number" value="1" min="1" class="quantity-input">
+            <button class="increase-btn">+</button>
+        </div>
+        <button class="add-to-cart">Добавить в корзину</button>
+        <div class="product-info">
+            <span class="product-name"></span>
+            <span class="product-price"></span>
+            <span class="product-quantity"></span>
+        </div>
+    </div>
+</div>
+</div>
 <div class="cart-icon" onclick="window.location.href='cart.html'">🛒</div>
+<div <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            padding: 2rem;
+        }
+        .cart-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .total {
+            font-weight: bold;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Корзина</h1>
+    <div id="cart-items"></div>
+    <div class="total" id="total-sum"></div>
 
-<footer>Телефон: +7 (775) 205-38-50</footer>
+    <script>
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartContainer = document.getElementById('cart-items');
+        const totalContainer = document.getElementById('total-sum');
 
+        let total = 0;
+
+        cart.forEach(item => {
+            const itemEl = document.createElement('div');
+            itemEl.className = 'cart-item';
+            const price = parseFloat(item.price.replace(/[^\d.]/g, ''));
+            const subtotal = price * item.quantity;
+            total += subtotal;
+
+            itemEl.innerHTML = `
+                <div><strong>${item.name}</strong></div>
+                <div>Цена: ${item.price}</div>
+                <div>Количество: ${item.quantity}</div>
+                <div>Сумма: ${subtotal.toFixed(2)} ₸</div>
+            `;
+            cartContainer.appendChild(itemEl);
+        });
+
+        totalContainer.textContent = `Общая сумма: ${total.toFixed(2)} ₸`;
+    </script>
+</body>
+</html>
+</div>
+<footer>Телефон: +7 (706) 626 75 37</footer>
 <script>
     const categories = document.querySelectorAll('.category');
     const cards = document.querySelectorAll('.menu-card');
@@ -431,6 +513,5 @@
         });
     });
 </script>
-
 </body>
 </html>
