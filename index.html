@@ -43,24 +43,28 @@
         }
 
         .menu-container {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            padding: 2rem;
-            max-width: 500px;
-            margin: auto;
-        }
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: auto;
+    justify-content: center;
+}
+
 
 
         .menu-card {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            text-align: center;
-            padding-bottom: 1rem;
-            position: relative;
-        }
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    width: 45%; /* Чтобы вмещались 2 карточки */
+    min-width: 300px;
+    padding-bottom: 1rem;
+    position: relative;
+}
 
         .menu-card img {
             width: 80%;
@@ -209,12 +213,9 @@
             font-size: 0.9rem;
         }
     </style>
-
 </head>
 <body>
-
 <header>DADA BURGER<br>FAST FOODS</header>
-
 <!-- Categories -->
 <div class="categories">
     <div class="category" data-filter="all">Все</div>
@@ -223,6 +224,7 @@
     <div class="category" data-filter="пицца">Пиццы</div>
     <div class="category" data-filter="бургер">Бургеры</div>
     <div class="category" data-filter="хотдог">Хот-доги</div>
+    <div class="category" data-filter="напитки">напитки</div>
 </div>
 
 <!-- Menu Cards Container -->
@@ -291,8 +293,36 @@
 
     <div class="menu-card" data-category="пицца">
         <img style="width: 307px; height:280px" src="img/izza.jpg" alt="пицца с грибом">
-        <h3>пицца с грибом</h3>
+        <h3>пицца-грибной</h3>
         <div class="price">1990 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">-</button>
+                <input type="number" value="1" min="1" class="quantity-input">
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
+        </div>
+    </div>
+    <div class="menu-card" data-category="пицца">
+        <img style="width: 307px; height:280px" src="img/img_1.png" alt="пицца с грибом">
+        <h3>пепперони</h3>
+        <div class="price">2100 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">-</button>
+                <input type="number" value="1" min="1" class="quantity-input">
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
+        </div>
+    </div>
+    <div class="menu-card" data-category="пицца">
+        <img style="width: 307px; height:280px" src="img/img_2.png" alt="пицца с грибом">
+        <h3>куринный-пицца</h3>
+        <div class="price">2100 ₸</div>
         <button class="order-btn">Заказать</button>
         <div class="quantity-selector">
             <div class="quantity">
@@ -318,9 +348,59 @@
             <button class="add-to-cart">Добавить в корзину</button>
         </div>
     </div>
-
-</div>
-
+    <div class="menu-card" data-category="напитки">
+        <img style="width: 307px; height:280px" src="img/img.png" alt="напитки">
+        <h3>кола</h3>
+        <div class="price">350 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">-</button>
+                <input type="number" value="1" min="1" class="quantity-input">
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
+        </div>
+    </div>
+     <div class="menu-card" data-category="напитки">
+        <img style="width: 307px; height:280px" src="img/pepsi.jpg" alt="напитки">
+        <h3>Пепси</h3>
+        <div class="price">350 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">-</button>
+                <input type="number" value="1" min="1" class="quantity-input">
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
+        </div>
+     <div class="menu-card" data-category="напитки">
+        <img style="width: 307px; height:280px" src="img/фанта.jpg" alt="напитки">
+        <h3>Фанта</h3>
+        <div class="price">350 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">-</button>
+                <input type="number" value="1" min="1" class="quantity-input">
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
+        </div>
+         <div class="menu-card" data-category="напитки">
+        <img style="width: 307px; height:280px" src="img/фиус.jpg" alt="напитки">
+        <h3>Фиус-чай</h3>
+        <div class="price">350 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">-</button>
+                <input type="number" value="1" min="1" class="quantity-input">
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
+        </div>
 <!-- Cart Icon -->
 <div class="cart-icon" onclick="window.location.href='cart.html'">🛒</div>
 
