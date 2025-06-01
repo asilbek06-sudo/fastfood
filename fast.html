@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>FastFood Express</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>🍔 Добро пожаловать в FastFood Express!</h1>
+  <a href="{{ url_for('menu') }}">📋 Меню</a><br>
+  <a href="{{ url_for('order') }}">🛒 Сделать заказ</a>
+</body>
+</html>
