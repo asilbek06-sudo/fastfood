@@ -215,6 +215,93 @@
     </style>
 </head>
 <body>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dako Geolocation</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- 🗺️ Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <style>
+    #geo-output {
+      margin: 10px;
+      font-weight: bold;
+      color: green;
+    }
+    #map {
+      height: 300px;
+      margin: 10px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🟢 Блок с координатами -->
+  <div id="geo-output">Определяем местоположение...</div>
+
+  <!-- 🗺️ Карта -->
+  <div id="map"></div>
+
+  <!-- 🔗 Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- 🧠 Геолокация + Карта -->
+  <script>
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+      document.getElementById("geo-output").textContent =
+        "Геолокация не поддерживается этим браузером.";
+    }
+
+    function showPosition(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      document.getElementById("geo-output").textContent =
+        "Ваше местоположение: " + lat.toFixed(5) + ", " + lon.toFixed(5);
+
+      // Создаём карту
+      const map = L.map('map').setView([lat, lon], 15);
+
+      // Добавляем слой OpenStreetMap
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      // Добавляем маркер
+      L.marker([lat, lon]).addTo(map)
+        .bindPopup('Вы здесь 🧍')
+        .openPopup();
+    }
+
+    function showError(error) {
+      const output = document.getElementById("geo-output");
+      switch(error.code) {
+        case error.PERMISSION_DENIED:
+          output.textContent = "⛔ Доступ к геолокации отклонён.";
+          break;
+        case error.POSITION_UNAVAILABLE:
+          output.textContent = "📡 Информация о местоположении недоступна.";
+          break;
+        case error.TIMEOUT:
+          output.textContent = "⏱️ Время ожидания истекло.";
+          break;
+        default:
+          output.textContent = "⚠️ Неизвестная ошибка.";
+      }
+    }
+  </script>
+
+</body>
+</html>
+
 <header>DADA BURGER<br>FAST FOODS</header>
 <!-- Categories -->
 <div class="categories">
@@ -475,6 +562,7 @@
       });
     });
 </script>
+
 
 </body>
 </html>

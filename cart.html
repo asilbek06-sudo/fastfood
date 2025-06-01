@@ -284,5 +284,44 @@
         }
     }
 </script>
+<div id="geo-output" style="margin: 10px; font-weight: bold; color: green;"></div>
+<script><script>
+  // Проверяем, поддерживается ли геолокация
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else {
+    alert("Геолокация не поддерживается этим браузером.");
+  }
+
+  function showPosition(position) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+
+    // Показываем в alert или вставляем в DOM
+    alert("Ваши координаты: " + latitude + ", " + longitude);
+
+    // Можно вставить в элемент на странице, например:
+    document.getElementById("geo-output").textContent =
+      "Ваше местоположение: " + latitude + ", " + longitude;
+  }
+
+  function showError(error) {
+    switch(error.code) {
+      case error.PERMISSION_DENIED:
+        alert("Вы отклонили запрос на геолокацию.");
+        break;
+      case error.POSITION_UNAVAILABLE:
+        alert("Информация о местоположении недоступна.");
+        break;
+      case error.TIMEOUT:
+        alert("Превышено время ожидания запроса.");
+        break;
+      case error.UNKNOWN_ERROR:
+        alert("Произошла неизвестная ошибка.");
+        break;
+    }
+  }
+</script>
+</script>
 </body>
 </html>
