@@ -1,353 +1,350 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DADA BURGER - стильный дизайн</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>DADA BURGER - стильный дизайн</title>
 
-  <!-- Подключаем шрифт Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <!-- Подключаем шрифт Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
 
-  <!-- Leaflet CSS -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  />
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
-  <style>
-    /* Общие стили */
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      background: #121212;
-      color: #eee;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    <style>
+        /* Общие стили */
+        * {
+          box-sizing: border-box;
+        }
+        body {
+          margin: 0;
+          background: #121212;
+          color: #eee;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+            Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
 
-    header {
-      background: linear-gradient(90deg, #ff7e5f, #feb47b);
-      width: 100%;
-      text-align: center;
-      padding: 2rem 0;
-      font-weight: 700;
-      font-size: 2.8rem;
-      letter-spacing: 2px;
-      color: #fff;
-      box-shadow: 0 4px 10px rgba(255, 126, 95, 0.5);
-      user-select: none;
-      text-transform: uppercase;
-    }
+        header {
+          background: linear-gradient(90deg, #ff7e5f, #feb47b);
+          width: 100%;
+          text-align: center;
+          padding: 2rem 0;
+          font-weight: 700;
+          font-size: 2.8rem;
+          letter-spacing: 2px;
+          color: #fff;
+          box-shadow: 0 4px 10px rgba(255, 126, 95, 0.5);
+          user-select: none;
+          text-transform: uppercase;
+        }
 
-    /* Категории */
-    .categories {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      margin: 1.8rem 0;
-      max-width: 1100px;
-      width: 90%;
-      user-select: none;
-    }
+        /* Категории */
+        .categories {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 12px;
+          margin: 1.8rem 0;
+          max-width: 1100px;
+          width: 90%;
+          user-select: none;
+        }
 
-    .category {
-      background: #222;
-      color: #aaa;
-      padding: 10px 25px;
-      border-radius: 40px;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-      transition: all 0.3s ease;
-      text-transform: capitalize;
-    }
+        .category {
+          background: #222;
+          color: #aaa;
+          padding: 10px 25px;
+          border-radius: 40px;
+          font-weight: 600;
+          font-size: 1rem;
+          cursor: pointer;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+          transition: all 0.3s ease;
+          text-transform: capitalize;
+        }
 
-    .category:hover {
-      color: #ff7e5f;
-      background: #333;
-      box-shadow: 0 6px 15px rgba(255, 126, 95, 0.6);
-      transform: scale(1.05);
-    }
+        .category:hover {
+          color: #ff7e5f;
+          background: #333;
+          box-shadow: 0 6px 15px rgba(255, 126, 95, 0.6);
+          transform: scale(1.05);
+        }
 
-    .category.active {
-      background: #ff7e5f;
-      color: #fff;
-      box-shadow: 0 6px 20px rgba(255, 126, 95, 0.8);
-      transform: scale(1.1);
-    }
+        .category.active {
+          background: #ff7e5f;
+          color: #fff;
+          box-shadow: 0 6px 20px rgba(255, 126, 95, 0.8);
+          transform: scale(1.1);
+        }
 
-    /* Контейнер меню */
-    .menu-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      width: 90%;
-      max-width: 1100px;
-      padding-bottom: 3rem;
-    }
+        /* Контейнер меню */
+        .menu-container {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: 2rem;
+          width: 90%;
+          max-width: 1100px;
+          padding-bottom: 3rem;
+        }
 
-    /* Карточки */
-    .menu-card {
-      background: #1e1e1e;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
-      overflow: hidden;
-      color: #eee;
-      position: relative;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-bottom: 1.4rem;
-    }
+        /* Карточки */
+        .menu-card {
+          background: #1e1e1e;
+          border-radius: 16px;
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+          overflow: hidden;
+          color: #eee;
+          position: relative;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding-bottom: 1.4rem;
+        }
 
-    .menu-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 30px rgba(255, 126, 95, 0.7);
-    }
+        .menu-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 12px 30px rgba(255, 126, 95, 0.7);
+        }
 
-    .menu-card img {
-      width: 100%;
-      height: 210px;
-      object-fit: cover;
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
-      filter: brightness(0.9);
-      transition: filter 0.3s ease;
-    }
+        .menu-card img {
+          width: 100%;
+          height: 210px;
+          object-fit: cover;
+          border-top-left-radius: 16px;
+          border-top-right-radius: 16px;
+          filter: brightness(0.9);
+          transition: filter 0.3s ease;
+        }
 
-    .menu-card:hover img {
-      filter: brightness(1);
-    }
+        .menu-card:hover img {
+          filter: brightness(1);
+        }
 
-    .menu-card h3 {
-      margin: 1.2rem 0 0.6rem;
-      font-weight: 700;
-      font-size: 1.5rem;
-      text-transform: capitalize;
-      letter-spacing: 0.03em;
-    }
+        .menu-card h3 {
+          margin: 1.2rem 0 0.6rem;
+          font-weight: 700;
+          font-size: 1.5rem;
+          text-transform: capitalize;
+          letter-spacing: 0.03em;
+        }
 
-    .price {
-      font-weight: 700;
-      color: #ff7e5f;
-      font-size: 1.3rem;
-      margin-bottom: 0.8rem;
-    }
+        .price {
+          font-weight: 700;
+          color: #ff7e5f;
+          font-size: 1.3rem;
+          margin-bottom: 0.8rem;
+        }
 
-    /* Кнопка заказать */
-    .order-btn {
-      background: #ff7e5f;
-      border: none;
-      padding: 0.55rem 1.5rem;
-      color: #fff;
-      font-weight: 600;
-      font-size: 1.1rem;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(255, 126, 95, 0.5);
-      transition: background 0.3s ease, transform 0.15s ease;
-      user-select: none;
-      outline-offset: 2px;
-    }
+        /* Кнопка заказать */
+        .order-btn {
+          background: #ff7e5f;
+          border: none;
+          padding: 0.55rem 1.5rem;
+          color: #fff;
+          font-weight: 600;
+          font-size: 1.1rem;
+          border-radius: 50px;
+          cursor: pointer;
+          box-shadow: 0 5px 15px rgba(255, 126, 95, 0.5);
+          transition: background 0.3s ease, transform 0.15s ease;
+          user-select: none;
+          outline-offset: 2px;
+        }
 
-    .order-btn:hover {
-      background: #feb47b;
-      transform: scale(1.05);
-      box-shadow: 0 8px 25px rgba(255, 180, 140, 0.7);
-    }
+        .order-btn:hover {
+          background: #feb47b;
+          transform: scale(1.05);
+          box-shadow: 0 8px 25px rgba(255, 180, 140, 0.7);
+        }
 
-    /* Выбор количества */
-    .quantity-selector {
-      margin-top: 1rem;
-      width: 100%;
-      padding: 0 1.4rem;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      user-select: none;
-      animation: fadeIn 0.4s ease forwards;
-    }
+        /* Выбор количества */
+        .quantity-selector {
+          margin-top: 1rem;
+          width: 100%;
+          padding: 0 1.4rem;
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          gap: 1rem;
+          user-select: none;
+          animation: fadeIn 0.4s ease forwards;
+        }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
 
-    .quantity {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      width: 100%;
-      justify-content: center;
-    }
+        .quantity {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          width: 100%;
+          justify-content: center;
+        }
 
-    .quantity button {
-      background: #333;
-      border: none;
-      color: #ff7e5f;
-      font-size: 1.5rem;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      font-weight: 700;
-      user-select: none;
-    }
+        .quantity button {
+          background: #333;
+          border: none;
+          color: #ff7e5f;
+          font-size: 1.5rem;
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          cursor: pointer;
+          transition: background 0.3s ease;
+          font-weight: 700;
+          user-select: none;
+        }
 
-    .quantity button:hover {
-      background: #ff7e5f;
-      color: #fff;
-      box-shadow: 0 0 10px #ff7e5faa;
-      transform: scale(1.1);
-    }
+        .quantity button:hover {
+          background: #ff7e5f;
+          color: #fff;
+          box-shadow: 0 0 10px #ff7e5faa;
+          transform: scale(1.1);
+        }
 
-    .quantity input {
-      width: 55px;
-      text-align: center;
-      font-size: 1.3rem;
-      font-weight: 600;
-      border-radius: 10px;
-      border: 2px solid #333;
-      color: #eee;
-      background: #222;
-      padding: 6px 0;
-      user-select: text;
-      -moz-appearance: textfield;
-    }
+        .quantity input {
+          width: 55px;
+          text-align: center;
+          font-size: 1.3rem;
+          font-weight: 600;
+          border-radius: 10px;
+          border: 2px solid #333;
+          color: #eee;
+          background: #222;
+          padding: 6px 0;
+          user-select: text;
+          -moz-appearance: textfield;
+        }
 
-    /* Скрыть стрелки input number */
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-    input[type=number] {
-      -moz-appearance: textfield;
-    }
+        /* Скрыть стрелки input number */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        input[type=number] {
+          -moz-appearance: textfield;
+        }
 
-    /* Кнопка добавления в корзину */
-    .add-to-cart {
-      background: #28a745;
-      border: none;
-      color: #fff;
-      font-weight: 700;
-      padding: 0.6rem 2rem;
-      font-size: 1.1rem;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 6px 18px rgba(40, 167, 69, 0.6);
-      transition: background 0.3s ease, transform 0.15s ease;
-      user-select: none;
-      outline-offset: 2px;
-    }
+        /* Кнопка добавления в корзину */
+        .add-to-cart {
+          background: #28a745;
+          border: none;
+          color: #fff;
+          font-weight: 700;
+          padding: 0.6rem 2rem;
+          font-size: 1.1rem;
+          border-radius: 50px;
+          cursor: pointer;
+          box-shadow: 0 6px 18px rgba(40, 167, 69, 0.6);
+          transition: background 0.3s ease, transform 0.15s ease;
+          user-select: none;
+          outline-offset: 2px;
+        }
 
-    .add-to-cart:hover {
-      background: #218838;
-      transform: scale(1.05);
-      box-shadow: 0 8px 25px rgba(33, 136, 56, 0.7);
-    }
+        .add-to-cart:hover {
+          background: #218838;
+          transform: scale(1.05);
+          box-shadow: 0 8px 25px rgba(33, 136, 56, 0.7);
+        }
 
-    /* Иконка корзины */
-    .cart-icon {
-      position: fixed;
-      right: 25px;
-      bottom: 25px;
-      background: #ff7e5f;
-      width: 65px;
-      height: 65px;
-      border-radius: 50%;
-      color: white;
-      font-size: 2.2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      box-shadow: 0 8px 25px rgba(255, 126, 95, 0.7);
-      user-select: none;
-      transition: background 0.3s ease, transform 0.15s ease;
-      z-index: 999;
-    }
+        /* Иконка корзины */
+        .cart-icon {
+          position: fixed;
+          right: 25px;
+          bottom: 25px;
+          background: #ff7e5f;
+          width: 65px;
+          height: 65px;
+          border-radius: 50%;
+          color: white;
+          font-size: 2.2rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          box-shadow: 0 8px 25px rgba(255, 126, 95, 0.7);
+          user-select: none;
+          transition: background 0.3s ease, transform 0.15s ease;
+          z-index: 999;
+        }
 
-    .cart-icon:hover {
-      background: #feb47b;
-      transform: scale(1.1);
-      box-shadow: 0 10px 30px rgba(255, 180, 140, 0.8);
-    }
+        .cart-icon:hover {
+          background: #feb47b;
+          transform: scale(1.1);
+          box-shadow: 0 10px 30px rgba(255, 180, 140, 0.8);
+        }
 
-    footer {
-      width: 100%;
-      background: #1a1a1a;
-      padding: 1.2rem 0;
-      text-align: center;
-      font-weight: 600;
-      font-size: 1rem;
-      color: #777;
-      user-select: none;
-      margin-top: auto;
-    }
+        footer {
+          width: 100%;
+          background: #1a1a1a;
+          padding: 1.2rem 0;
+          text-align: center;
+          font-weight: 600;
+          font-size: 1rem;
+          color: #777;
+          user-select: none;
+          margin-top: auto;
+        }
 
-    /* Геолокация */
-    #geo-output {
-      max-width: 1100px;
-      width: 90%;
-      margin: 1rem auto 0;
-      font-weight: 600;
-      color: #69f0ae;
-      text-align: center;
-      user-select: none;
-      min-height: 26px;
-    }
+        /* Геолокация */
+        #geo-output {
+          max-width: 1100px;
+          width: 90%;
+          margin: 1rem auto 0;
+          font-weight: 600;
+          color: #69f0ae;
+          text-align: center;
+          user-select: none;
+          min-height: 26px;
+        }
 
-    #map {
-      max-width: 1100px;
-      width: 90%;
-      height: 300px;
-      border-radius: 14px;
-      margin: 1rem auto 3rem;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.9);
-      border: 1px solid #444;
-    }
+        #map {
+          max-width: 1100px;
+          width: 90%;
+          height: 300px;
+          border-radius: 14px;
+          margin: 1rem auto 3rem;
+          box-shadow: 0 8px 25px rgba(0,0,0,0.9);
+          border: 1px solid #444;
+        }
 
-    /* Адаптив */
-    @media (max-width: 480px) {
-      .order-btn, .add-to-cart {
-        font-size: 1rem;
-        padding: 0.5rem 1.3rem;
-      }
-      .category {
-        padding: 8px 18px;
-        font-size: 0.9rem;
-      }
-    }
-  </style>
+        /* Адаптив */
+        @media (max-width: 480px) {
+          .order-btn, .add-to-cart {
+            font-size: 1rem;
+            padding: 0.5rem 1.3rem;
+          }
+          .category {
+            padding: 8px 18px;
+            font-size: 0.9rem;
+          }
+        }
+    </style>
 </head>
 <body>
 
-  <header>DADA BURGER - FAST FOODS</header>
+<header>DADA BURGER - FAST FOODS</header>
 
-  <div id="geo-output">Определяем местоположение...</div>
-  <div id="map"></div>
+<div id="geo-output">Определяем местоположение...</div>
+<div id="map"></div>
 
-  <div class="categories">
+<div class="categories">
     <div class="category active" data-filter="all">Все</div>
     <div class="category" data-filter="шаурма">Шаурмы</div>
     <div class="category" data-filter="лаваш">Лавашы</div>
@@ -355,50 +352,210 @@
     <div class="category" data-filter="бургер">Бургеры</div>
     <div class="category" data-filter="хотдог">Хот-доги</div>
     <div class="category" data-filter="напитки">Напитки</div>
-  </div>
+</div>
 
-  <div class="menu-container">
+<div class="menu-container">
+    <!-- Шаурма -->
     <div class="menu-card" data-category="шаурма">
-      <img src="img/shaurma.jpg" alt="Шаурма" />
-      <h3>Шаурма</h3>
-      <div class="price">850 ₸</div>
-      <button class="order-btn">Заказать</button>
-      <div class="quantity-selector">
-        <div class="quantity">
-          <button class="decrease-btn">−</button>
-          <input type="number" value="1" min="1" class="quantity-input" />
-          <button class="increase-btn">+</button>
+        <img src="img/shaurma.jpg" alt="Шаурма"/>
+        <h3>Шаурма</h3>
+        <div class="price">850 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">−</button>
+                <input type="number" value="1" min="1" class="quantity-input"/>
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
         </div>
-        <button class="add-to-cart">Добавить в корзину</button>
-      </div>
     </div>
 
+    <!-- Бургер -->
+    <div class="menu-card" data-category="бургер">
+        <img src="img/burger.jpg" alt="Бургер"/>
+        <h3>Бургер</h3>
+        <div class="price">1000 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">−</button>
+                <input type="number" value="1" min="1" class="quantity-input"/>
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
+        </div>
+    </div>
+
+    <!-- Лаваш -->
+    <div class="menu-card" data-category="лаваш">
+        <img src="img/doner.jpeg" alt="Лаваш"/>
+        <h3>Лаваш</h3>
+        <div class="price">950 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">−</button>
+                <input type="number" value="1" min="1" class="quantity-input"/>
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
+        </div>
+    </div>
+
+    <!-- Фри -->
+    <div class="menu-card" data-category="фри">
+        <img src="img/fri.jpg" alt="Картофель фри"/>
+        <h3>Картофель фри</h3>
+        <div class="price">550 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">−</button>
+                <input type="number" value="1" min="1" class="quantity-input"/>
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
+        </div>
+    </div>
+
+    <!-- Хот-дог -->
     <div class="menu-card" data-category="хотдог">
-      <img src="img/hotdog.jpg" alt="Хотдог" />
-      <h3>Хотдог</h3>
-      <div class="price">990 ₸</div>
-      <button class="order-btn">Заказать</button>
-      <div class="quantity-selector">
-        <div class="quantity">
-          <button class="decrease-btn">−</button>
-          <input type="number" value="1" min="1" class="quantity-input" />
-          <button class="increase-btn">+</button>
+        <img src="img/hotdog.jpg" alt="Хот-дог"/>
+        <h3>Хот-дог</h3>
+        <div class="price">850 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">−</button>
+                <input type="number" value="1" min="1" class="quantity-input"/>
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
         </div>
-        <button class="add-to-cart">Добавить в корзину</button>
-      </div>
     </div>
 
-    <!-- Добавляй остальные карточки по аналогии -->
-  </div>
+    <!-- Пицца с грибами -->
+    <div class="menu-card" data-category="пицца">
+        <img src="img/izza.jpg" alt="Пицца с грибами"/>
+        <h3>Пицца с грибами</h3>
+        <div class="price">1990 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">−</button>
+                <input type="number" value="1" min="1" class="quantity-input"/>
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
+        </div>
+    </div>
 
-  <div class="cart-icon" title="Корзина" onclick="window.location.href='cart.html'">🛒</div>
+    <!-- Пицца куриная -->
+    <div class="menu-card" data-category="пицца">
+        <img src="img/img_2.png" alt="Пицца куриная"/>
+        <h3>Пицца куриная</h3>
+        <div class="price">2100 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">−</button>
+                <input type="number" value="1" min="1" class="quantity-input"/>
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
+        </div>
+    </div>
 
-  <footer>Телефон: +7 (706) 626 75 37</footer>
+    <!-- Пицца пепперони -->
+    <div class="menu-card" data-category="пицца">
+        <img src="img/img_1.png" alt="Пицца пепперони"/>
+        <h3>Пицца пепперони</h3>
+        <div class="price">850 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">−</button>
+                <input type="number" value="1" min="1" class="quantity-input"/>
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
+        </div>
+    </div>
 
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Coca-Cola -->
+    <div class="menu-card" data-category="напитки">
+        <img src="img/img.png" alt="Coca-Cola"/>
+        <h3>Coca-Cola</h3>
+        <div class="price">350 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">−</button>
+                <input type="number" value="1" min="1" class="quantity-input"/>
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
+        </div>
+    </div>
 
-  <script>
+    <!-- Fanta -->
+    <div class="menu-card" data-category="напитки">
+        <img src="img/fanta.jpg" alt="Fanta"/>
+        <h3>Fanta</h3>
+        <div class="price">350 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">−</button>
+                <input type="number" value="1" min="1" class="quantity-input"/>
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
+        </div>
+    </div>
+
+    <!-- Fuse-tea -->
+    <div class="menu-card" data-category="напитки">
+        <img src="img/fuse.jpg" alt="Fuse-tea"/>
+        <h3>Fuse-tea</h3>
+        <div class="price">350 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">−</button>
+                <input type="number" value="1" min="1" class="quantity-input"/>
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
+        </div>
+    </div>
+
+    <!-- Pepsi -->
+    <div class="menu-card" data-category="напитки">
+        <img src="img/pepsi.jpg" alt="Pepsi"/>
+        <h3>Pepsi</h3>
+        <div class="price">350 ₸</div>
+        <button class="order-btn">Заказать</button>
+        <div class="quantity-selector">
+            <div class="quantity">
+                <button class="decrease-btn">−</button>
+                <input type="number" value="1" min="1" class="quantity-input"/>
+                <button class="increase-btn">+</button>
+            </div>
+            <button class="add-to-cart">Добавить в корзину</button>
+        </div>
+    </div>
+</div>
+
+<div class="cart-icon" title="Корзина" onclick="window.location.href='cart.html'">🛒</div>
+
+<footer>Телефон: +7 (706) 626 75 37</footer>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
     // Геолокация и карта
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -450,14 +607,16 @@
 
     // Открытие выбора количества
     document.querySelectorAll('.order-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const card = btn.closest('.menu-card');
-        const selector = card.querySelector('.quantity-selector');
-        if (selector.style.display === 'flex') {
+      btn.addEventListener('click', (e) => {
+        // Сначала скрываем все открытые селекторы количества
+        document.querySelectorAll('.quantity-selector').forEach(selector => {
           selector.style.display = 'none';
-        } else {
-          selector.style.display = 'flex';
-        }
+        });
+
+        // Затем показываем только тот, на который нажали
+        const card = e.target.closest('.menu-card');
+        const selector = card.querySelector('.quantity-selector');
+        selector.style.display = 'flex';
       });
     });
 
@@ -480,8 +639,8 @@
 
     // Добавление в корзину
     document.querySelectorAll('.add-to-cart').forEach(button => {
-      button.addEventListener('click', () => {
-        const card = button.closest('.menu-card');
+      button.addEventListener('click', (e) => {
+        const card = e.target.closest('.menu-card');
         const name = card.querySelector('h3').textContent;
         const priceText = card.querySelector('.price').textContent;
         const price = parseInt(priceText.replace(/\D/g, ''));
@@ -494,19 +653,50 @@
 
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-        const existing = cart.find(item => item.name === name);
-        if (existing) {
-          existing.quantity += quantity;
+        // Проверяем, есть ли уже такой товар в корзине
+        const existingItemIndex = cart.findIndex(item => item.name === name);
+        if (existingItemIndex !== -1) {
+          // Если товар уже есть - обновляем количество
+          cart[existingItemIndex].quantity += quantity;
         } else {
-          cart.push({ name, price, quantity });
+          // Если товара нет - добавляем новый
+          cart.push({
+            name,
+            price,
+            quantity,
+            image: card.querySelector('img').src
+          });
         }
 
         localStorage.setItem('cart', JSON.stringify(cart));
 
-        alert(`В корзину добавлено: ${quantity} × ${name}`);
+        // Показываем уведомление
+        const notification = document.createElement('div');
+        notification.textContent = `Добавлено ${quantity} × ${name}`;
+        notification.style.position = 'fixed';
+        notification.style.bottom = '100px';
+        notification.style.right = '25px';
+        notification.style.backgroundColor = '#28a745';
+        notification.style.color = 'white';
+        notification.style.padding = '15px 25px';
+        notification.style.borderRadius = '5px';
+        notification.style.zIndex = '1000';
+        notification.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+        document.body.appendChild(notification);
+
+        // Удаляем уведомление через 3 секунды
+        setTimeout(() => {
+          notification.style.opacity = '0';
+          notification.style.transition = 'opacity 0.5s ease';
+          setTimeout(() => {
+            document.body.removeChild(notification);
+          }, 500);
+        }, 3000);
+
+        // Скрываем селектор количества
         card.querySelector('.quantity-selector').style.display = 'none';
       });
     });
-  </script>
+</script>
 </body>
 </html>
