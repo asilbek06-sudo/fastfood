@@ -225,13 +225,15 @@
     <h3 id="modalTitle">Оформление заказа</h3>
     <input type="text" id="customerName" placeholder="Ваше имя" autocomplete="name" required />
     <input type="tel" id="customerPhone" placeholder="Ваш номер телефона" autocomplete="tel" required />
+    <!-- 👇 Скрытые поля для геолокации -->
+    <input type="hidden" id="latitude" />
+    <input type="hidden" id="longitude" />
     <button onclick="sendOrderToTelegram()">Подтвердить заказ</button>
     <button class="close-modal" onclick="closeModal()">Отмена</button>
   </div>
 </div>
 
 <script>
-  // Телефонный инпут с автоматической маской +7
   const phoneInput = document.getElementById("customerPhone");
 
   phoneInput.addEventListener("focus", () => {
@@ -243,13 +245,10 @@
 
   phoneInput.addEventListener("input", () => {
     let phoneNumber = phoneInput.value.replace(/[^0-9]/g, "");
-
     if (!phoneNumber.startsWith("7")) {
       phoneNumber = "7" + phoneNumber;
     }
-
     phoneNumber = phoneNumber.substring(0, 11);
-
     phoneInput.value = "+" + phoneNumber;
   });
 
@@ -259,7 +258,6 @@
     }
   });
 
-  // Загрузка и отображение корзины
   function displayCartItems() {
     const cartItemsContainer = document.getElementById("cart-items");
     const cartTotalContainer = document.getElementById("cart-total");
@@ -275,11 +273,9 @@
     let itemsHTML = "";
 
     cart.forEach((item) => {
-      // Если цена — число, иначе парсим строку
       const price = typeof item.price === "number" ? item.price : parseFloat(item.price.toString().replace(/[^\d.]/g, ""));
       const itemTotal = price * item.quantity;
       total += itemTotal;
-
       itemsHTML += `
         <div class="cart-item">
           <div class="item-info">${item.name}</div>
@@ -293,7 +289,6 @@
     cartTotalContainer.textContent = `Итого: ${total.toFixed(2)} ₸`;
   }
 
-  // Показать модальное окно оформления заказа
   function showCheckoutModal() {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     if (cart.length === 0) {
@@ -303,15 +298,15 @@
     document.getElementById("checkoutModal").classList.add("show");
   }
 
-  // Закрыть модальное окно
   function closeModal() {
     document.getElementById("checkoutModal").classList.remove("show");
   }
 
-  // Отправка заказа в Telegram через бота
   async function sendOrderToTelegram() {
     const name = document.getElementById("customerName").value.trim();
     const phone = document.getElementById("customerPhone").value.trim();
+    const latitude = document.getElementById("latitude").value;
+    const longitude = document.getElementById("longitude").value;
 
     if (!name || !phone || phone.length < 12) {
       alert("Пожалуйста, корректно заполните все поля!");
@@ -339,6 +334,11 @@
 
     message += `\n💰 Итого: ${total.toFixed(2)} ₸`;
 
+    // 📍 Добавляем геолокацию
+    if (latitude && longitude) {
+      message += `\n📍 Местоположение: https://www.google.com/maps?q=${latitude},${longitude}`;
+    }
+
     const token = "7701354119:AAFsf5tJVSCR2C-JeDvkzWHOaWA8eTE7aJ0";
     const chat_id = "-4963299968";
 
@@ -356,7 +356,6 @@
         throw new Error("Ошибка сети при отправке заказа");
       }
 
-      // Очистить корзину и обновить UI
       localStorage.setItem("cart", JSON.stringify([]));
       closeModal();
       alert("Спасибо! Ваш заказ отправлен. Мы свяжемся с вами в ближайшее время.");
@@ -367,8 +366,21 @@
     }
   }
 
-  // Инициализация страницы после загрузки
-  document.addEventListener("DOMContentLoaded", displayCartItems);
+  // 📍 Получаем координаты при загрузке
+  document.addEventListener("DOMContentLoaded", function () {
+    displayCartItems();
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          document.getElementById("latitude").value = position.coords.latitude;
+          document.getElementById("longitude").value = position.coords.longitude;
+        },
+        function (error) {
+          console.warn("Геолокация недоступна или отклонена.");
+        }
+      );
+    }
+  });
 </script>
 
 </body>
